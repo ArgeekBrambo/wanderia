@@ -25,6 +25,9 @@ function handleError(error, req, res, next) {
             msg = "Invalid username, email or password";
             break;
         case "Unauthenticated":
+            status = 401;
+            msg = "Must login first"
+            break;
         case "JsonWebTokenError":
             status = 401;
             msg = "Must login first";
