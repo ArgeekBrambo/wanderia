@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - backend/development
+
+jobs:
+  test-user:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18.13
+    - name: Install dependencies
+      run: npm i
+      working-directory: server/services/user
+    - name: Run unit tests using nyc and Mocha
+      run: npm test -- --reporter=nyc
+      working-directory: server/services/user
