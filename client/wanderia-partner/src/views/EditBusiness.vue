@@ -71,8 +71,11 @@ export default {
         });
         // console.log(this.input)
         this.$router.push("/dashboard");
+        Swal.fire({
+          title: "Bisnis Berhasil Diedit",
+        });
       } catch (error) {
-        console.log(error);
+        Swal.fire(error.message);
       }
     },
     setResultToInput() {

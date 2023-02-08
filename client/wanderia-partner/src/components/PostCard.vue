@@ -34,7 +34,7 @@ export default {
 };
 </script>
 <template>
-  <div class="card border border-dark border-2" style="width: 18rem">
+  <div class="card" style="width: 18rem">
     <img
       class="card-img-top mt-2"
       style="height: 200px"
@@ -43,17 +43,16 @@ export default {
     />
     <div class="card-body">
       <h5 class="card-title">{{ post.name }}</h5>
-      <h3>Link</h3>
       <p class="card-text">{{ post.link }}</p>
-    </div>
-    <div class="d-flex justify-content-end mb-2">
-      <!-- nanti buat methode delete -->
-      <a
-        href=""
-        class="btn btn-primary me-3 btn-lg"
-        @submit.prevent="handleDelete"
-        >Delete</a
-      >
+      <div class="d-flex justify-content-end mb-2">
+        <!-- nanti buat methode delete -->
+        <a
+          href=""
+          class="btn btn-danger me-3 text-white"
+          @submit.prevent="handleDelete"
+          >Delete</a
+        >
+      </div>
     </div>
   </div>
 </template>

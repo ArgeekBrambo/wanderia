@@ -21,18 +21,12 @@ body {
 }
 
 .portfolio-info h3{
-  font-family: cursive;
   font-size: 20px;
   text-decoration: underline;
 }
 
-.portfolio-info ul{
-  margin-left: 20px;
-}
-
 .portfolio-info ul li{
   text-align: justify;
-  font-family: Bookman, URW Bookman L, serif;
 }
 
 a {

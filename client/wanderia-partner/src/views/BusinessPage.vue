@@ -32,8 +32,14 @@ export default {
           <h1>{{ result.onePartnerBusiness.name }}</h1>
           <ol>
             <li>
-              <button type="button" class="btn btn-warning">
-                <RouterLink to="/dashboard">Dashboard</RouterLink>
+              <button
+                type="button"
+                class="btn btn-warning border border-dark"
+                style="background-color: #4a388e"
+              >
+                <RouterLink to="/dashboard" class="text-white"
+                  >Dashboard</RouterLink
+                >
               </button>
             </li>
           </ol>
@@ -44,7 +50,7 @@ export default {
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
-      <div class="container">
+      <div class="container card mb-5 pt-3">
         <div class="row gy-4">
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper">
@@ -52,6 +58,7 @@ export default {
                 <div class="swiper-slide">
                   <img
                     style="height: 500px; width: 800px"
+                    class="border border-secondary"
                     :src="result.onePartnerBusiness.imageUrl"
                     alt=""
                   />
@@ -95,8 +102,14 @@ export default {
                   {{ result.onePartnerBusiness.rating }}
                 </li>
                 <li>
-                  <button type="button" class="btn btn-warning">
-                    <RouterLink :to="`/addpost/${result.onePartnerBusiness.id}`"
+                  <button
+                    type="button"
+                    class="btn btn-warning border border-dark"
+                    style="background-color: #4a388e"
+                  >
+                    <RouterLink
+                      :to="`/addpost/${result.onePartnerBusiness.id}`"
+                      class="text-white"
                       >Add Post</RouterLink
                     >
                   </button>
@@ -106,7 +119,11 @@ export default {
           </div>
         </div>
       </div>
+      <div class="bg-secondary bg-gradient my-3" style="height: 40px"></div>
       <div class="container swiper-wrapper align-items-center">
+        <div>
+          <h2>Posts</h2>
+        </div>
         <div
           class="row row-cols-4 gap-5"
           v-if="result.onePartnerBusiness.posts.length > 0"
@@ -116,6 +133,9 @@ export default {
             :key="post.id"
             :post="post"
           />
+        </div>
+        <div v-else>
+          <center><h3>No posts yet...</h3></center>
         </div>
       </div>
     </section>

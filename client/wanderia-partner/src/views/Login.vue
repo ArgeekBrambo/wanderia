@@ -39,9 +39,12 @@ export default {
         });
         localStorage.setItem("access_token", data.login.access_token);
         this.$router.push("/dashboard");
+        Swal.fire({
+          title: "Login Berhasil",
+        });
         // console.log(result);
       } catch (error) {
-        console.log(error);
+        Swal.fire(error.message);
       }
     },
     // ...mapActions(useCounterStore, ["login"]),
@@ -77,8 +80,10 @@ export default {
 </script>
 
 <template>
-  <div class="d-flex align-self-center">
-    <main class="form-signin w-100 m-auto">
+  <div>
+    <main
+      class="form-signin w-100 position-absolute top-50 start-50 translate-middle border border-secondary border-2 rounded-4 shadow p-3 bg-body-tertiary rounded"
+    >
       <RouterLink to="/">
         <img
           src="../assets/logo-wanderia.png"
@@ -97,7 +102,7 @@ export default {
           <input
             v-model="input.email"
             type="email"
-            class="form-control"
+            class="form-control border border-secondary"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
           />
@@ -107,22 +112,17 @@ export default {
           <input
             v-model="input.password"
             type="password"
-            class="form-control"
+            class="form-control border border-secondary"
             id="exampleInputPassword1"
           />
         </div>
 
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me" /> Remember me
-          </label>
-        </div>
         <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">
           Sign in
         </button>
-        <center>
+        <div class="text-center">
           <p>Belum punya akun? <a href="/register">Register</a></p>
-        </center>
+        </div>
       </form>
     </main>
   </div>

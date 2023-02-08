@@ -54,8 +54,11 @@ export default {
           input: this.input,
         });
         this.$router.push("/dashboard");
+        Swal.fire({
+          title: "Bisnis Berhasil Ditambah",
+        });
       } catch (error) {
-        console.log(error);
+        Swal.fire(error.message);
       }
     },
   },
@@ -65,112 +68,107 @@ export default {
 <template>
   <div class="d-flex align-self-center">
     <main class="form-register w-100 m-auto">
-      <img
-        src="../assets/logo-wanderia.png"
-        class="mx-auto d-block pb-4"
-        alt="Wanderia"
-        width="100px"
-      />
-      <form @submit.prevent="handleAddBusiness">
-        <h1 class="h3 mb-3 fw-normal">Add Business</h1>
-
-        <div class="mb-3 row">
-          <label for="name" class="col-sm-2 col-form-label">Name</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              v-model="input.name"
-              class="form-control"
-              id="name"
-            />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="price" class="col-sm-2 col-form-label">Price</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              v-model="input.price"
-              class="form-control"
-              id="price"
-            />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="rating" class="col-sm-2 col-form-label">Rating</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              v-model="input.rating"
-              class="form-control"
-              id="rating"
-            />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="address" class="col-sm-2 col-form-label">Address</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              v-model="input.address"
-              class="form-control"
-              id="address"
-            />
-          </div>
-        </div>
-        <div class="mb-3 row" v-if="result">
-          <label for="categoryId" class="col-sm-2 col-form-label"
-            >Category ID</label
-          >
-          <div class="col-sm-10">
-            <select
-              v-model="input.CategoryId"
-              class="form-select"
-              aria-label="Default select example"
-            >
-              <option disabled value="0">Open this select menu</option>
-              <option
-                v-for="category in result.allPartnerCategories"
-                :key="`${category.id}-1`"
-                :value="+category.id"
+      <div class="card">
+        <img
+          src="../assets/wanderia.png"
+          class="mx-auto d-block pt-3"
+          alt="Wanderia"
+          width="100"
+        />
+        <div class="card-body">
+          <h1 class="h3 mb-3 fw-normal">Add Business</h1>
+          <form @submit.prevent="handleAddBusiness">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                v-model="input.name"
+                class="form-control"
+                id="name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input
+                type="text"
+                v-model="input.price"
+                class="form-control"
+                id="price"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="rating" class="form-label">Rating</label>
+              <input
+                type="text"
+                v-model="input.rating"
+                class="form-control"
+                id="rating"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input
+                type="text"
+                v-model="input.address"
+                class="form-control"
+                id="address"
+              />
+            </div>
+            <div class="mb-3" v-if="result">
+              <label for="categoryId" class="form-label">Category</label>
+              <select
+                v-model="input.CategoryId"
+                class="form-select"
+                aria-label="Default select example"
               >
-                {{ category.name }}
-              </option>
-              <!-- <option value="2">Two</option>
-              <option value="3">Three</option> -->
-            </select>
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="mapUrl" class="col-sm-2 col-form-label">Map URL</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              v-model="input.mapUrl"
-              class="form-control"
-              id="mapUrl"
-            />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="imageUrl" class="col-sm-2 col-form-label">Image</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              v-model="input.imageUrl"
-              class="form-control"
-              id="imageUrl"
-            />
-          </div>
-        </div>
+                <option disabled value="0">Select category</option>
+                <option
+                  v-for="category in result.allPartnerCategories"
+                  :key="`${category.id}-1`"
+                  :value="+category.id"
+                >
+                  {{ category.name }}
+                </option>
+                <!-- <option value="2">Two</option>
+                  <option value="3">Three</option> -->
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="mapUrl" class="form-label">Map URL</label>
+              <input
+                type="text"
+                v-model="input.mapUrl"
+                class="form-control"
+                id="mapUrl"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="imageUrl" class="form-label">Image</label>
+              <input
+                type="text"
+                v-model="input.imageUrl"
+                class="form-control"
+                id="imageUrl"
+              />
+            </div>
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">
-          Submit
-        </button>
-        <a href="/dashboard" class="w-100 btn btn-lg btn-danger mt-2">
-          Cancel
-        </a>
-      </form>
+            <button
+              class="w-100 btn btn-lg text-white"
+              type="submit"
+              style="background-color: #4a388e"
+            >
+              Submit
+            </button>
+            <a
+              href="/dashboard"
+              class="w-100 btn btn-lg text-white mt-2"
+              style="background-color: #893189"
+            >
+              Cancel
+            </a>
+          </form>
+        </div>
+      </div>
     </main>
   </div>
 </template>

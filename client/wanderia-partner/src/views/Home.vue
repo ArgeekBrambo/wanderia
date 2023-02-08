@@ -36,18 +36,24 @@ export default {
     <div class="col py-3">
       <div class="container">
         <div class="d-flex justify-content-center">
-          <h1>Warung Makan Enak</h1>
+          <h1>Welcome To Wanderia</h1>
         </div>
       </div>
       <div class="container">
-        <h3>My Business</h3>
+        <h3>My Businesses</h3>
         <div class="container swiper-wrapper align-items-center">
-          <div class="row row-cols-4 gap-5" v-if="result">
+          <div
+            class="row row-cols-4 gap-5"
+            v-if="result.partnerBusiness.length > 0"
+          >
             <CardBusinesses
               v-for="business in result.partnerBusiness"
               :key="business.id"
               :business="business"
             />
+          </div>
+          <div v-else>
+            <center><h3>No businesses yet...</h3></center>
           </div>
         </div>
       </div>
